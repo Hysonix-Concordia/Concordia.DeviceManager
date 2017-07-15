@@ -1,0 +1,1 @@
+E:\Code\Concordia\Concordia.DeviceManager\bin\Debug\Concordia.DeviceManager.exe.config
