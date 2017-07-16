@@ -1,1 +1,13 @@
 E:\Code\Concordia\Concordia.DeviceManager\bin\Debug\Concordia.DeviceManager.exe.config
+E:\Code\Concordia\Concordia.DeviceManager\obj\Debug\Concordia.DeviceManager.csprojResolveAssemblyReference.cache
+E:\Code\Concordia\Concordia.DeviceManager\obj\Debug\Concordia.DeviceManager.Form1.resources
+E:\Code\Concordia\Concordia.DeviceManager\obj\Debug\Concordia.DeviceManager.Properties.Resources.resources
+E:\Code\Concordia\Concordia.DeviceManager\obj\Debug\Concordia.DeviceManager.csproj.GenerateResource.Cache
+E:\Code\Concordia\Concordia.DeviceManager\bin\Debug\Concordia.DeviceManager.exe
+E:\Code\Concordia\Concordia.DeviceManager\bin\Debug\Concordia.DeviceManager.pdb
+E:\Code\Concordia\Concordia.DeviceManager\bin\Debug\NLog.dll
+E:\Code\Concordia\Concordia.DeviceManager\bin\Debug\SerialPortLib.dll
+E:\Code\Concordia\Concordia.DeviceManager\bin\Debug\NLog.xml
+E:\Code\Concordia\Concordia.DeviceManager\bin\Debug\SerialPortLib.xml
+E:\Code\Concordia\Concordia.DeviceManager\obj\Debug\Concordia.DeviceManager.exe
+E:\Code\Concordia\Concordia.DeviceManager\obj\Debug\Concordia.DeviceManager.pdb
