@@ -55,8 +55,9 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.ForeColor = System.Drawing.Color.Red;
-            this.lblStatus.Location = new System.Drawing.Point(299, 14);
+            this.lblStatus.Location = new System.Drawing.Point(299, 9);
             this.lblStatus.Name = "lblStatus";
+            this.lblStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblStatus.Size = new System.Drawing.Size(99, 13);
             this.lblStatus.TabIndex = 1;
             this.lblStatus.Text = "Listening for device";
@@ -94,6 +95,7 @@
             this.txtSSID.Name = "txtSSID";
             this.txtSSID.Size = new System.Drawing.Size(251, 20);
             this.txtSSID.TabIndex = 5;
+            this.txtSSID.Text = "Hysonix";
             // 
             // txtPassword
             // 
@@ -101,6 +103,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(251, 20);
             this.txtPassword.TabIndex = 6;
+            this.txtPassword.Text = "champster";
             // 
             // txtSubscriptionId
             // 
@@ -108,6 +111,7 @@
             this.txtSubscriptionId.Name = "txtSubscriptionId";
             this.txtSubscriptionId.Size = new System.Drawing.Size(251, 20);
             this.txtSubscriptionId.TabIndex = 7;
+            this.txtSubscriptionId.Text = "bce00b0a-aea5-4354-91e7-87c3851ca2c7";
             // 
             // btnSave
             // 

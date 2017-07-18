@@ -95,7 +95,7 @@ namespace Concordia.DeviceManager
                 var binaryData = BitConverter.ToString(args.Data);
                 var strData = FromHex(binaryData);
 
-                txt += string.Format("Received message: {0}", strData);
+                txt += strData;
                 Log(txt);
 
                 if (strData.Contains("WAITING") && !_waitingForMessage)
