@@ -15,12 +15,12 @@ namespace Concordia.DeviceManager
     {
 
         private SerialPortInput _serialPort { get; set; }
-        private bool _waitingForMessage = false;
         private string txt;
 
         delegate void LoggingCallback(string text);
         delegate void StatusCallback(string text, Color color);
-        delegate void ShowConfigPanelCallback();
+        delegate void ShowWifiConfigPanelCallback();
+        delegate void ShowConcordiaConfigPanelCallback();
 
         private void Log(string text)
         {
@@ -49,16 +49,30 @@ namespace Concordia.DeviceManager
             }
         }
 
-        private void ShowConfigPanel()
+        private void ShowWifiConfigPanel()
         {
-            if (this.pnlConfigure.InvokeRequired)
+            if (this.pnlWifiConfig.InvokeRequired)
             {
-                ShowConfigPanelCallback d = new ShowConfigPanelCallback(ShowConfigPanel);
+                ShowWifiConfigPanelCallback d = new ShowWifiConfigPanelCallback(ShowWifiConfigPanel);
                 this.Invoke(d, new object[] { });
             }
             else
             {
-                this.pnlConfigure.Visible = true;
+                this.pnlWifiConfig.Visible = true;
+            }
+        }
+
+        private void ShowConcordiaConfigPanel()
+        {
+            if (this.pnlConcordiaConfig.InvokeRequired)
+            {
+                ShowConcordiaConfigPanelCallback d = new ShowConcordiaConfigPanelCallback(ShowConcordiaConfigPanel);
+                this.Invoke(d, new object[] { });
+            }
+            else
+            {
+                this.pnlWifiConfig.Visible = false;
+                this.pnlConcordiaConfig.Visible = true;
             }
         }
 
@@ -98,10 +112,15 @@ namespace Concordia.DeviceManager
                 txt += strData;
                 Log(txt);
 
-                if (strData.Contains("WAITING") && !_waitingForMessage)
+                if (strData.Contains("WAITING"))
                 {
                     SetStatus("Device connection on COM3", Color.Green);
-                    ShowConfigPanel();
+                    ShowWifiConfigPanel();
+                }
+                else if (strData.Contains("READY"))
+                {
+                    SetStatus("Device connected on " + strData.Replace("READY", ""), Color.Green);
+                    ShowConcordiaConfigPanel();
                 }
             };
 
@@ -114,9 +133,13 @@ namespace Concordia.DeviceManager
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var message = string.Format("{0}{1}{2}", txtSSID.Text.PadRight(32, ' '), txtPassword.Text.PadRight(32, ' '), txtSubscriptionId.Text.PadRight(36, ' '));
-            _waitingForMessage = true;
+            var message = string.Format("{0}{1}", txtSSID.Text.PadRight(32, ' '), txtPassword.Text.PadRight(32, ' '));
             _serialPort.SendMessage(System.Text.Encoding.UTF8.GetBytes(message));
+        }
+
+        private void btnSaveConcordiaConfig_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
