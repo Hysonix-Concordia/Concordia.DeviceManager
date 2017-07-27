@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SerialPortLib;
+using System.Net.Http;
 
 namespace Concordia.DeviceManager
 {
@@ -16,6 +17,7 @@ namespace Concordia.DeviceManager
 
         private SerialPortInput _serialPort { get; set; }
         private string txt;
+        private string deviceIpAddress;
 
         delegate void LoggingCallback(string text);
         delegate void StatusCallback(string text, Color color);
@@ -119,7 +121,8 @@ namespace Concordia.DeviceManager
                 }
                 else if (strData.Contains("READY"))
                 {
-                    SetStatus("Device connected on " + strData.Replace("READY", ""), Color.Green);
+                    deviceIpAddress = strData.Replace("READY", "");
+                    SetStatus("Device connected on " + deviceIpAddress, Color.Green);
                     ShowConcordiaConfigPanel();
                 }
             };
@@ -139,7 +142,14 @@ namespace Concordia.DeviceManager
 
         private void btnSaveConcordiaConfig_Click(object sender, EventArgs e)
         {
-
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(deviceIpAddress);
+                HttpResponseMessage response = client.GetAsync(String.Format("concordia/join?subid={0}&devicename={1}", txtSubscriptionId.Text, txtDeviceName.Text)).Result;
+                response.EnsureSuccessStatusCode();
+                string result = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine("Result: " + result);
+            }
         }
     }
 }
